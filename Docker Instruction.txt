@@ -1,0 +1,78 @@
+Steps:>
+
+Prerequisites:
+
+These softwares must be installed on your system:-
+	-->Docker Desktop 
+	-->Spring boot 
+	-->Spring boot application to deploy
+
+Docker account login to use Docker software effectively.
+
+Add a Dockerfile to your project root directory. 
+	Content inside Dockerfile:
+	--FROM openjdk:11
+	--EXPOSE 8080
+	--ADD target/[your jar file name] [your jar file name]
+	--ENTRYPOINT ["java","-jar","/[your jar file name]"]
+
+Note: ENTRYPOINT is used to set executables that will always run when the container is initiated.
+
+In pom.xml add jar file name using fileName tag
+
+Open windows powershell or cmd using admin previledge  
+	-- Run docker commands
+	
+Docker useful commnads:
+	-->docker build -t first-app.jar .
+	-->docker run -p 9090:8080 first-app.jar
+	-->docker image ls
+
+Note: first-app.jar is the jar file of our spring boot application.
+
+Access your spring boot application using browser:
+	-->http://192.168.101.1:9090/employee/message
+
+	desc: 
+	     192.168.101.1 --> ip address of docker running on your system.
+	     9090 --> Port number of Docker.
+	     /emp/message --> is the mapping of the from your controller application.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FROM openjdk:11
+EXPOSE 8080
+ADD target/first-app.jar first-app.jar
+ENTRYPOINT ["java","-jar","/first-app.jar"]
+
